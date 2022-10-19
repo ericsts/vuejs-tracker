@@ -1,0 +1,54 @@
+<template>
+  <header>
+      <h1>
+        <img src="../assets/logo.png" alt="">
+      </h1>
+      <button class="button" @click="themeChange">
+        {{ txtButton }}
+      </button>
+  </header>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  name: 'SideBar',
+  emits: ['themeChanged'],
+  data () {
+    return {
+      darkMode: false
+    }
+  },
+  computed: {
+    txtButton () {
+      if (this.darkMode) {
+        return 'Disable dark mode'
+      }
+      return 'Enable dark mode'
+    }
+  },
+  methods: {
+    themeChange () {
+      this.darkMode = !this.darkMode
+      this.$emit('themeChanged', this.darkMode)
+    }
+  }
+})
+</script>
+
+<style scoped>
+header {
+  padding: 1rem;
+  background: #0d3b66;
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+}
+@media only screen and (max-width: 768px) {
+  header {
+    padding: 2.5rem;
+    height: auto;
+  }
+}
+</style>
