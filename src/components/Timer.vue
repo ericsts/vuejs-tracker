@@ -1,6 +1,6 @@
 <template>
   <div class="is-flex is-align-items-center is-justify-content-space-between">
-    <Crono :timeInSeconds="timeInSeconds" />
+    <Crono :elapsedTime="elapsedTime" />
     <button class="button" @click="start" :disabled="timeCounting">
       <span class="icon">
         <i class="fas fa-play"></i>
@@ -28,7 +28,7 @@ export default defineComponent({
   },
   data () {
     return {
-      timeInSeconds: 0,
+      elapsedTime: 0,
       crono: 0,
       timeCounting: false
     }
@@ -38,14 +38,14 @@ export default defineComponent({
       // 1 seg = 1000 ms
       this.timeCounting = true
       this.crono = setInterval(() => {
-        this.timeInSeconds += 1
+        this.elapsedTime += 1
       }, 1000)
     },
     stop () {
       this.timeCounting = false
       clearInterval(this.crono)
-      this.$emit('onFinishTime', this.timeInSeconds)
-      this.timeInSeconds = 0
+      this.$emit('onFinishTime', this.elapsedTime)
+      this.elapsedTime = 0
     }
   }
 });

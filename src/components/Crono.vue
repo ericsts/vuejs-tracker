@@ -1,7 +1,7 @@
 <template>
   <section>
     <strong class="display">
-      {{ elapsedTime }}
+      {{ txtElapsedTime }}
     </strong>
   </section>
 </template>
@@ -10,16 +10,16 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'Cronometro',
+  name: 'Crono',
   props: {
-    timeInSeconds: {
+    elapsedTime: {
       type: Number,
       default: 0
     }
   },
   computed: {
-    elapsedTime () : string {
-      return new Date(this.timeInSeconds * 1000).toISOString().substr(11,8)
+    txtElapsedTime() : string {
+      return new Date(this.elapsedTime * 1000).toISOString().substr(11,8)
     }
   },
 })
