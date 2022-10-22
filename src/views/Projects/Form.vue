@@ -13,10 +13,11 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import { TypeNotification } from "@/interfaces/INotification";
 import { useStore } from "@/store";
-import { NOTIFY } from "@/store/types-mutations";
-import { defineComponent } from "vue";
+import { ADD_PROJECT, UPD_PROJECT } from "@/store/types-mutations";
+import useNotifier from  "@/hooks/notifier";
 
 export default defineComponent({
     name: "Form",
@@ -39,26 +40,24 @@ export default defineComponent({
     methods: {
         save() {
             if(this.id){
-                this.store.commit("UPD_PROJECT", {
+                this.store.commit(UPD_PROJECT, {
                     id: this.id,
                     name: this.projName,
                 });
             }else{
-                this.store.commit("ADD_PROJECT", this.projName);
+                this.store.commit(ADD_PROJECT, this.projName);
             }
             this.projName = "";
-            this.store.commit(NOTIFY, {
-                title:"Yeah",
-                text:"That is it!!!",
-                type:TypeNotification.OK
-            });
+            this.notify(TypeNotification.OK, 'Success', "Everything good");
             this.$router.push('/projects');
         },
     },
     setup() {
         const store = useStore();
+        const {notify} = useNotifier();
         return {
             store,
+            notify
         };
     },
 });

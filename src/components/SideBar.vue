@@ -56,17 +56,33 @@ export default defineComponent({
 </script>
 
 <style scoped>
+h1 {
+  text-align: center;
+}
+strong {
+  color: #f95738;
+}
 header {
-  padding: 1rem;
   background: #0d3b66;
   width: 100%;
   height: 100vh;
-  text-align: center;
+  padding: 2rem;
 }
 @media only screen and (max-width: 768px) {
   header {
-    padding: 2.5rem;
     height: auto;
   }
+}
+.panel li {
+  margin: 8px 0;
+}
+.link {
+  color: #fff;
+}
+.link:hover {
+  color: #FAF0CA;
+}
+.link.router-link-active {
+  color: #FAF0CA;
 }
 </style>
