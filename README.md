@@ -1,5 +1,10 @@
 # tracker
 
+A simple project to learn vuejs.
+
+A system to create projects and tasks to manage your time!
+
+
 ## Project setup
 ```
 yarn install
