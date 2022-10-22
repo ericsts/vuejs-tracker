@@ -13,7 +13,9 @@
 </template>
 
 <script lang="ts">
+import { TypeNotification } from "@/interfaces/INotification";
 import { useStore } from "@/store";
+import { NOTIFY } from "@/store/types-mutations";
 import { defineComponent } from "vue";
 
 export default defineComponent({
@@ -45,7 +47,12 @@ export default defineComponent({
                 this.store.commit("ADD_PROJECT", this.projName);
             }
             this.projName = "";
-            this.$router.push('/projects')
+            this.store.commit(NOTIFY, {
+                title:"Yeah",
+                text:"That is it!!!",
+                type:TypeNotification.OK
+            });
+            this.$router.push('/projects');
         },
     },
     setup() {
